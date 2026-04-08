@@ -39,7 +39,12 @@ const SPEEDS = {
 	6: 150,
 	7: 150,
 	8: 80,
-	9: 80
+	9: 80,
+	10: 80,
+	11: 80,
+	12: 80,
+	13: 80,
+	14: 80
 };
 
 // =====================================================
@@ -129,6 +134,7 @@ export async function createAnimatedGIF(options, outfitPack, mountPack) {
 
 	const frameCount = outfitMetadata.frameCounts[options.walk];
 	const frameDuration = SPEEDS[frameCount];
+	console.log("FrameDuration", frameCount, frameDuration);
 	const framePromises = [];
 	const frameDurations = [];
 	const frameOpts = { ...options };

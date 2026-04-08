@@ -40,7 +40,7 @@ async function getTarPack(env, id) {
 
 function buildCacheKey(url, params) {
 	// v4 = renderer version (bump when logic changes)
-	const keyString = `v4_${params.id}_${params.walk}_${params.addons}_${params.head}_${params.body}_${params.legs}_${params.feet}_${params.mounthead}_${params.mountbody}_${params.mountlegs}_${params.mountfeet}_${params.mount}_${params.direction}_${params.animation}_${params.rotate ? 1 : 0}_${params.animate ? 1 : 0}`;
+	const keyString = `v5_${params.id}_${params.walk}_${params.addons}_${params.head}_${params.body}_${params.legs}_${params.feet}_${params.mounthead}_${params.mountbody}_${params.mountlegs}_${params.mountfeet}_${params.mount}_${params.direction}_${params.animation}_${params.rotate ? 1 : 0}_${params.animate ? 1 : 0}`;
 
 	const cacheUrl = `${url.origin}/_outfit_cache/${keyString}`;
 
