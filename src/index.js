@@ -71,7 +71,12 @@ function isAllowedReferer(request, env) {
 		return true;
 	}
 
-	const host = new URL(referer).hostname;
+	let host;
+	try {
+		host = new URL(referer).hostname;
+	} catch {
+		return false;
+	}
 	return getAllowedHosts(env).has(host);
 }
 export default {
@@ -85,6 +90,14 @@ export default {
 		const params = getParams(url);
 		if (!params) {
 			return new Response("Invalid parameters", { status: 400 })
+		}
+
+		// Canonicalize params that don't affect the rendered output,
+		// so equivalent requests share a single cache entry.
+		if (params.animate) {
+			params.animation = 1; // overridden per-frame in createAnimatedGIF
+		} else {
+			params.walk = 0; // forced to 0 by createColorizedOutfit
 		}
 
 		const cache = caches.default;
